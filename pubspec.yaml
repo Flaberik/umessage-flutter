@@ -32,7 +32,9 @@ dependencies:
   i18n:
   dotted_border:
   rflutter_alert:
-    
+  flutter2web: any
+  requests:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

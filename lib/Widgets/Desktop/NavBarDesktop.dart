@@ -54,13 +54,14 @@ class _NavBarDesktopState extends State<NavBarDesktop> {
   Widget build(BuildContext context) {
     return new Container(
       // color: navBarColor,
+      // decoration: BoxDecoration(color: navBarColor),
       decoration: BoxDecoration(
           gradient: LinearGradient(
         begin: Alignment.topRight,
         end: Alignment.bottomLeft,
         colors: [
-          Color.fromRGBO(255, 204, 0, 0.8),
-          Color.fromRGBO(255, 102, 51, 0.8)
+          Color.fromRGBO(0, 86, 12, 0.8),
+          Color.fromRGBO(0, 102, 12, 0.8)
         ], // whitish to gray
         tileMode: TileMode.repeated,
       )),
@@ -77,7 +78,7 @@ class _NavBarDesktopState extends State<NavBarDesktop> {
                 'UM',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: textPrimaryColor,
+                  color: textNavBarColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 40,
                 ),

@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 class ApiClient {
   static ApiClient _instance;
   static http.BaseClient client;
+  int botId;
 
   static String access_token = "";
   static String refreshtoken = "";
@@ -66,13 +67,13 @@ class ApiClient {
 
   Future authorization(String email, String password) async {
     try {
-      var res = await client.post(api_url + 'auth-user',
+      var response = await client.post(api_url + 'auth-user',
           body: {'email': email, 'password': password});
 
-      print('${res.statusCode} auth_status_code');
+      print('${response.statusCode} auth_status_code');
 
-      if (res.statusCode == 200) {
-        var json = jsonDecode(res.body);
+      if (response.statusCode == 200) {
+        var json = jsonDecode(response.body);
         username = json['user'];
         refreshtoken = json['refreshtoken'];
         access_token = json['access_token'];
@@ -82,6 +83,54 @@ class ApiClient {
     } catch (e) {
       print('authorizationEx' + e.toString());
     }
+  }
+
+  Future telegramBotAddButton(
+      {int row, int col, String text, int messageId}) async {
+    // telegram-bot-button
+    try {
+      var response =
+          await client.post(api_url + 'telegram-bot-button/', headers: {
+        'Authorization': 'Token ' + access_token
+      }, body: {
+        'row': row.toString(),
+        'col': col.toString(),
+        'text': text,
+        'messageId': messageId.toString()
+      });
+      print('${response.statusCode}, ${response.body}');
+      if (response.statusCode == 200) {
+        var jsonBody = jsonDecode(utf8.decode(response.bodyBytes));
+        if (jsonBody['status'] == 'done') {
+          return jsonBody['messages'];
+        }
+      }
+    } catch (e) {
+      print('telegramBotAddButton excep: $e');
+    }
+    return [];
+  }
+
+  Future getTelegramBotMessage({int messageId = -1}) async {
+    try {
+      String url = api_url + 'telegram-bot-message?botId=$botId';
+      if (messageId > 0) {
+        url += '&messageId=$messageId';
+      }
+
+      var response = await client.get(
+        url,
+        headers: {'Authorization': 'Token ' + access_token},
+      );
+
+      if (response.statusCode == 200) {
+        var jsonBody = jsonDecode(utf8.decode(response.bodyBytes));
+        if (jsonBody['status'] == 'done') {
+          return jsonBody['messages'];
+        }
+      }
+    } catch (e) {}
+    return [];
   }
 
   Future getAllTgbot() async {

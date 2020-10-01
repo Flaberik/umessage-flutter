@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 // Color primaryColor = Color.fromRGBO(0, 51, 51, 1);
-Color primaryColor = Color.fromRGBO(253, 253, 253, 1);
+// Color primaryColor = Color.fromRGBO(0, 51, 51, 1);
+Color primaryColor = Color.fromRGBO(255, 255, 255, 1);
 // 204
-Color navBarColor = Color.fromRGBO(0, 51, 51, 0.95);
+Color navBarColor = Color.fromRGBO(102, 153, 0, 1);
 
 Color colorForCardItem = Color.fromRGBO(245, 245, 245, 1);
 
 const Color textPrimaryColor = Color.fromRGBO(24, 24, 24, 1);
+const Color textNavBarColor = Color.fromRGBO(245, 245, 245, 1);
 // Color textPrimaryColor = Color.fromRGBO(255, 255, 255, 1);
 Color linkColor = Color.fromRGBO(0, 51, 255, 1);
 const Color buttonPrimaryColor = Color.fromRGBO(0, 102, 204, 1);

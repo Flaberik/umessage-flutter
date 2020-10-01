@@ -15,7 +15,7 @@ class NavBarItem extends StatelessWidget {
         },
         child: Text(
           title,
-          style: TextStyle(fontSize: 18, color: textPrimaryColor),
+          style: TextStyle(fontSize: 18, color: textNavBarColor),
         ));
   }
 }
